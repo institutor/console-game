@@ -21,12 +21,12 @@ public class Warrior extends Adventurer {
     }
   
     public Warrior(){
-      this("Carmack");
+      this("Lorenzo");
     }
   
     /*The next 8 methods are all required because they are abstract:*/
     public String getSpecialName(){
-      return "mana";
+      return "D'Valla";
     }
   
     public int getSpecial(){
@@ -78,4 +78,4 @@ public class Warrior extends Adventurer {
       + getSpecialName()+ " and "+hp+" HP";
     }
   }
-}
+
