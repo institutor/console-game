@@ -41,7 +41,10 @@ public class Alchemist extends Adventurer {
         int damage = (int) (Math.random() * 4) + 1;
         other.applyDamage(damage);
         restoreSpecial(2);
-        return RED + this + " used a " + UNDERLINE + preferredPotion + NO_UNDERLINE + " on " + other + " dealing " + UNDERLINE + damage + " points of damage" + NO_UNDERLINE +". They then begin brewing their special potion." + RESET;
+        if (getSpecial()>= 5) {
+            System.out.println(YELLOW + "Special Attack is ready! Type special on next move to use special attack." + RESET);
+        }
+        return RED + this + " used a " + UNDERLINE + preferredPotion + NO_UNDERLINE + " on " + other + " dealing " + UNDERLINE + damage + " points of damage" + NO_UNDERLINE +". They then continuing brewing their special potion, getting closer to their special attack." + RESET;
     }
 
     public String specialAttack(Adventurer other) {

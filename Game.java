@@ -78,7 +78,7 @@ public class Game {
                 return new Berserker("Enemy", 25, "Axe");
             case 1:
                 System.out.println(CYAN + "Enemy will be a mage." + RESET);
-                return new Mage("Enemy", 21, "Ice Storm");
+                return new Mage("Enemy", 21, "Hail of Ice");
             case 2:
                 System.out.println(CYAN + "Enemy will be an archer." + RESET);
                 return new Archer("Enemy", 23, 15);

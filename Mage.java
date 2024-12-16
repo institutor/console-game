@@ -56,13 +56,13 @@ public class Mage extends Adventurer {
     }
 
     public String support(Adventurer other) {
-        return GREEN + this + " shares some tea with " + other + " and restores " +UNDERLINE + other.restoreSpecial(5) + " " + other.getSpecialName() + "." + NO_UNDERLINE + RESET;
+        return GREEN + this + " shares a magical potion with " + other + " and restores " +UNDERLINE + other.restoreSpecial(5) + " " + other.getSpecialName() + "." + NO_UNDERLINE + RESET;
     }
 
     public String support() {
 
         int hp = 2;
         setHP(getHP() + hp);
-        return GREEN + this + " drinks tea to restore " + UNDERLINE + restoreSpecial(8) + " Mana" + NO_UNDERLINE + " and " + hp + " HP." + RESET;
+        return GREEN + this + " drinks a mana potion to restore " + UNDERLINE + restoreSpecial(8) + " Mana" + NO_UNDERLINE + " and " + hp + " HP." + RESET;
     }
 }
