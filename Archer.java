@@ -36,10 +36,13 @@ public class Archer extends Adventurer {
     }
 
     public String attack(Adventurer other) {
+        if (arrows <= 0) {
+            return RED + this + " has no arrows left to shoot!" + "instead " + this + support();
+        }
         int damage = (int) (Math.random() * 6) + 1;
         other.applyDamage(damage);
         arrows--;
-        return RED + this + " shot an arrow at " + UNDERLINE + other + NO_UNDERLINE +", dealing " + UNDERLINE + damage + " points of damage" + NO_UNDERLINE + ". They then take a sip of their wine." + RESET;
+        return RED + this + " shot an arrow at " + UNDERLINE + other + NO_UNDERLINE +", dealing " + UNDERLINE + damage + " points of damage" + NO_UNDERLINE + " and losing an arrow." + RESET;
     }
 
     public String specialAttack(Adventurer other) {
@@ -54,12 +57,11 @@ public class Archer extends Adventurer {
     }
 
     public String support(Adventurer other) {
-        return GREEN + this + " shares their wine with " + UNDERLINE + other + NO_UNDERLINE +", restoring " + UNDERLINE + other.restoreSpecial(3) + " " + other.getSpecialName() + NO_UNDERLINE + "." + RESET;
+        return GREEN + this + " shares their grape juice with " + UNDERLINE + other + NO_UNDERLINE +", restoring " + UNDERLINE + other.restoreSpecial(3) + " " + other.getSpecialName() + NO_UNDERLINE + "." + RESET;
     }
 
     public String support() {
-        int hp = 1;
-        setHP(getHP() + hp);
-        return GREEN + this + " drinks their wine, restoring " + UNDERLINE + restoreSpecial(5) + " " + getSpecialName() + NO_UNDERLINE + " and " + UNDERLINE + hp + " HP" + NO_UNDERLINE + "." + RESET;
+        setHP(getHP() + 1);
+        return GREEN + this + " refills their quiver and drinks some wine (grape juice), restoring " + UNDERLINE + restoreSpecial(5) + " " + getSpecialName() + NO_UNDERLINE + " and " + UNDERLINE + " 1 HP" + NO_UNDERLINE + "." + RESET;
     }
 }
