@@ -1,16 +1,23 @@
 // Collaborators: Jiewen Huang, Calvin Ye
 
-import java.util.Random;
-
 public abstract class Adventurer{
+  // ANSI color codes to make stuff more readable
+  public static final String RESET = "\u001B[0m";   // default
+  public static final String RED = "\u001B[31m";     // For damage messages
+  public static final String GREEN = "\u001B[32m";   // For healing or support
+  public static final String YELLOW = "\u001B[33m";  // For warnings
+  public static final String CYAN = "\u001B[36m";    // For general info
+  public static final String UNDERLINE = "\u001B[4m";
+  public static final String NO_UNDERLINE = "\u001B[24m";
   private String name;
   private int HP,maxHP;
+  private double damageMultiplier = 1.0;
 
 
   /*There is no no-arg constructor. Be careful with your subclass constructors.*/
   
   public Adventurer(String name){
-      this(name, 10);
+      this(name, 25);
   }
 
   public Adventurer(String name, int hp){
@@ -49,20 +56,26 @@ public abstract class Adventurer{
   //hurt or hinder the target adventurer
   public abstract String attack(Adventurer other);
 
-  //heall or buff the target adventurer
+  //heal or buff the target adventurer
   public abstract String support(Adventurer other);
 
-  //heall or buff self
+  //heal or buff self
   public abstract String support();
 
   //hurt or hinder the target adventurer, consume some special resource
   public abstract String specialAttack(Adventurer other);
 
+
   /*
     standard methods
   */
   public void applyDamage(int amount){
-    this.HP -= amount;
+    int actualDamage = (int) (amount * damageMultiplier);
+        this.HP -= actualDamage;
+        if (this.HP <= 0) {
+            this.HP = 0;
+            System.out.println(this.name + " has been defeated!");
+        }
   }
 
   
@@ -95,5 +108,12 @@ public abstract class Adventurer{
 
   public void setName(String s){
       this.name = s;
+  }
+  public void setDamageMultiplier(double multiplier) {
+    this.damageMultiplier = multiplier;
+}
+
+  public double getDamageMultiplier() {
+    return damageMultiplier;
   }
 }
