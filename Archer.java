@@ -62,6 +62,6 @@ public class Archer extends Adventurer {
 
     public String support() {
         setHP(getHP() + 1);
-        return GREEN + this + " refills their quiver and drinks some wine (grape juice), restoring " + UNDERLINE + restoreSpecial(5) + " " + getSpecialName() + NO_UNDERLINE + " and " + UNDERLINE + " 1 HP" + NO_UNDERLINE + "." + RESET;
+        return GREEN + this + " refills their quiver and drinks some grape juice and takes a quick nap (in the middle of the fight?!?!), restoring " + UNDERLINE + restoreSpecial(5) + " " + getSpecialName() + NO_UNDERLINE + " and " + UNDERLINE + " 1 HP" + NO_UNDERLINE + "." + RESET;
     }
 }

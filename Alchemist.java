@@ -38,7 +38,7 @@ public class Alchemist extends Adventurer {
     }
 
     public String attack(Adventurer other) {
-        int damage = (int) (Math.random() * 4) + 1;
+        int damage = (int) (Math.random() * 3) + 1;
         other.applyDamage(damage);
         restoreSpecial(2);
         if (getSpecial()>= 5) {
@@ -50,6 +50,8 @@ public class Alchemist extends Adventurer {
     public String specialAttack(Adventurer other) {
         if (getSpecial() >= 5) {
             setSpecial(getSpecial() - 5);
+            int damage = (int) (Math.random() * 4) + 2;
+            other.applyDamage(damage);
             other.setDamageMultiplier(2);
             return CYAN + this + " used their ultimate potion, " + UNDERLINE + preferredPotion + NO_UNDERLINE +"! It weakened " + other + ", making them take " + UNDERLINE + "twice as much damage" + NO_UNDERLINE + "." + RESET;
         } else {

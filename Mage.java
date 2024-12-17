@@ -38,7 +38,7 @@ public class Mage extends Adventurer {
     }
 
     public String attack(Adventurer other) {
-        int damage = (int) (Math.random() * 4) + 1;
+        int damage = (int) (Math.random() * 4) + 2;
         other.applyDamage(damage);
         restoreSpecial(3);
         return RED + this + " casted a " + preferredSpell + " at " + other + ", dealing " + UNDERLINE + damage + " points of damage." + NO_UNDERLINE + " Mana restored by 3 points." + RESET;

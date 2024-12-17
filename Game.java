@@ -54,7 +54,7 @@ public class Game {
         switch (role.toLowerCase()) {
             case "berserker":
                 System.out.println(CYAN + "Player will be a berserker." + RESET);
-                return new Berserker("Player", 25, "Java");
+                return new Berserker("Player", 25, "Axe");
             case "mage":
                 System.out.println(CYAN + "Player will be a mage." + RESET);
                 return new Mage("Player", 21, "Fireball");
@@ -66,7 +66,7 @@ public class Game {
                 return new Alchemist("Player", 21, "Weakness Potion");
             default:
                 System.out.println(RED + "Invalid role. Player will be a berserker." + RESET);
-                return new Berserker("Player", 25, "Java");
+                return new Berserker("Player", 25, "Axe");
         }
     }
     private static Adventurer createRandomAdventurer() {

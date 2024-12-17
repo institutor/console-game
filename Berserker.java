@@ -41,13 +41,16 @@ public class Berserker extends Adventurer {
       int damage = (int) (Math.random() * 6) + 1;
       other.applyDamage(damage);
       rage += damage;
+      if (getSpecial() <= 50) {
+        System.out.println(YELLOW + "Ultimate ability is ready! Type 'special' on your next attack to use it!" + RESET);
+      }
       return RED + this + " attacked " + other + " with " + preferredWeapon + " and dealt " + UNDERLINE + damage + " points of damage. " + NO_UNDERLINE + this + " also gains some Rage. Current Rage: " + rage + "/" + maxRage + RESET;
   }
 
   public String specialAttack(Adventurer other) {
       if (getSpecial() >= 50) {
           setSpecial(getSpecial() - 50);
-          int damage = (int) (Math.random() * 20) + 10;
+          int damage = (int) (Math.random() * 15) + 6;
           other.applyDamage(damage);
           return CYAN + this + " used their rage to perform a fierce attack on " + other + ", dealing " + UNDERLINE + damage + " points of damage." + NO_UNDERLINE + " Rage: " + rage + "/" + maxRage + RESET;
       } else {
@@ -62,6 +65,7 @@ public class Berserker extends Adventurer {
   public String support() {
       int hp = 5;
       setHP(getHP() + hp);
-      return GREEN + this + " regenerates " + UNDERLINE + hp + " health points." + NO_UNDERLINE + " HP: " + getHP() + RESET;
+      rage += 3;
+      return GREEN + "Using their incredible regeneration abilities, " + this + " regenerates " + UNDERLINE + hp + " health points. They also gain some rage." + NO_UNDERLINE + " HP: " + getHP() + RESET;
   }
 }
