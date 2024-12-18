@@ -41,9 +41,6 @@ public class Berserker extends Adventurer {
       int damage = (int) (Math.random() * 6) + 1;
       other.applyDamage(damage);
       rage += damage;
-      if (getSpecial() <= 50) {
-        System.out.println(YELLOW + "Ultimate ability is ready! Type 'special' on your next attack to use it!" + RESET);
-      }
       return RED + this + " attacked " + other + " with " + preferredWeapon + " and dealt " + UNDERLINE + damage + " points of damage. " + NO_UNDERLINE + this + " also gains some Rage. Current Rage: " + rage + "/" + maxRage + RESET;
   }
 

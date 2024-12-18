@@ -19,17 +19,17 @@ public class Game {
         System.out.println(UNDERLINE + "Enemy:" + NO_UNDERLINE + " " + enemy.getName() + ", HP: " + enemy.getHP() + ", " + enemy.getSpecialName() + ": " + enemy.getSpecial() + "/" + enemy.getSpecialMax());
         String action;
         while (true) {
-            System.out.println(YELLOW + "Type: attack / special / support / quit" + RESET);
+            System.out.println(YELLOW + "Type: attack (or a) / special (or sp) / support (or su) / quit" + RESET);
             action = scanner.nextLine();
             if (action.equalsIgnoreCase("quit")) {
                 System.out.println(RED + "Game Over. Thanks for playing!" + RESET);
                 break;
             }
-            if (action.equalsIgnoreCase("attack")) {
+            if ((action.equalsIgnoreCase("attack")) || action.equalsIgnoreCase("a")) {
                 System.out.println(player.attack(enemy));
-            } else if (action.equalsIgnoreCase("special")) {
+            } else if ((action.equalsIgnoreCase("special")) || action.equalsIgnoreCase("sp")) {
                 System.out.println(player.specialAttack(enemy));
-            } else if (action.equalsIgnoreCase("support")) {
+            } else if ((action.equalsIgnoreCase("support")) || action.equalsIgnoreCase("su")) {
                 System.out.println(player.support());
             } else {
                 System.out.println(RED + "Invalid action. Please try again." + RESET);
@@ -41,7 +41,7 @@ public class Game {
                 break;
             }
             System.out.println(CYAN + enemy.getName() + "'s turn:" + RESET);
-            System.out.println(enemy.attack(player));
+            enemyTurn(enemy, player);
             displayStatus(player, enemy);
             if (player.getHP() <= 0) {
                 System.out.println(RED + enemy.getName() + " wins!" + RESET);
@@ -65,8 +65,10 @@ public class Game {
                 System.out.println(CYAN + "Player will be an alchemist." + RESET);
                 return new Alchemist("Player", 21, "Weakness Potion");
             default:
-                System.out.println(RED + "Invalid role. Player will be a berserker." + RESET);
-                return new Berserker("Player", 25, "Axe");
+                System.out.println(RED + "Invalid role. Please enter a valid role (berserker, mage, alchemist, archer)." + RESET);
+                Scanner scanner = new Scanner(System.in);
+                role = scanner.nextLine();
+                return createAdventurer(role);
         }
     }
     private static Adventurer createRandomAdventurer() {
@@ -93,5 +95,31 @@ public class Game {
     private static void displayStatus(Adventurer player, Adventurer enemy) {
         System.out.println(UNDERLINE + "Player:" + NO_UNDERLINE + " " + player.getName() + ", HP: " + player.getHP() + ", " + player.getSpecialName() + ": " + player.getSpecial() + "/" + player.getSpecialMax());
         System.out.println(UNDERLINE + "Enemy:" + NO_UNDERLINE + " " + enemy.getName() + ", HP: " + enemy.getHP() + ", " + enemy.getSpecialName() + ": " + enemy.getSpecial() + "/" + enemy.getSpecialMax());
+    }
+    private static void enemyTurn(Adventurer enemy, Adventurer player) {
+        int action = (int)(Math.random()*3);
+        switch (action) {
+            case 0: // Regular attack
+                System.out.println(CYAN + enemy.getName() + " attacks:" + RESET);
+                System.out.println(enemy.attack(player));
+                break;
+            case 1: // for sp attack
+                if (enemy.getSpecial() >= 5) { 
+                    System.out.println(CYAN + enemy.getName() + " attempts to use their special attack:" + RESET);
+                    System.out.println(enemy.specialAttack(player));
+                } else { // regular attack from enemy
+                    System.out.println(CYAN + enemy.getName() + " doesn't have enough special points for a special attack and attacks instead:" + RESET);
+                    System.out.println(enemy.attack(player));
+                }
+                break;
+            case 2: // for supporting
+                System.out.println(CYAN + enemy.getName() + " supports themselves:" + RESET);
+                System.out.println(enemy.support());
+                break;
+            default:
+                System.out.println(CYAN + enemy.getName() + " attacks:" + RESET);
+                System.out.println(enemy.attack(player));
+                break;
+        }
     }
 }
